@@ -1,6 +1,6 @@
 import { IMove } from "../redux/gameplay/gameplay.interface";
 
-export default (user: IMove, ai: IMove) => {
+const getResult = (user: IMove, ai: IMove) => {
   if (user === ai) {
     return "draw";
   }
@@ -10,3 +10,5 @@ export default (user: IMove, ai: IMove) => {
     return ai > user ? "win" : "loss";
   }
 };
+
+export default getResult;

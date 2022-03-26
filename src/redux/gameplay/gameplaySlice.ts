@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IGameplayState, IMove, initialState } from "./gameplay.interface";
+import { IMove, initialState } from "./gameplay.interface";
 
 export const gameplaySlice = createSlice({
   name: "counter",
@@ -18,7 +18,7 @@ export const gameplaySlice = createSlice({
       state.playerScore += Number(payload.payload.result === "win");
       state.moveList.push(payload.payload);
       state.gameOver =
-        state.rounds === 4 || state.playerScore === 3 || state.aiScore === 3;
+        state.rounds === 9 || state.playerScore === 6 || state.aiScore === 6;
       // state.rounds++;
     },
     incrementRound: (state) => {

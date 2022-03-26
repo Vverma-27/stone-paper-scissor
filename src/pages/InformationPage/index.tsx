@@ -21,7 +21,7 @@ const InformationPage = () => {
           <li>Paper beats Rock</li>
         </ul>
         If you select the same option as the AI, then it will be a draw. <br />{" "}
-        The game ends when one of the players has won 3 rounds or 5 rounds have
+        The game ends when one of the players has won 6 rounds or 10 rounds have
         passed.
       </p>
       <Button

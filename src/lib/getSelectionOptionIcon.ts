@@ -4,13 +4,15 @@ import rockIcon from "../assets/images/rock-icon-big.png";
 import paperIcon from "../assets/images/paper-icon-big.png";
 import scissorsIcon from "../assets/images/scissors-icon-big.png";
 
-export default (selection: IMove) => {
+const getOption = (selection: IMove) => {
   switch (selection) {
-    case 1:
+    case IMove.ROCK:
       return rockIcon;
-    case 2:
+    case IMove.PAPER:
       return paperIcon;
-    case 3:
+    case IMove.SCISSORS:
       return scissorsIcon;
   }
 };
+
+export default getOption;
