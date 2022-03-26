@@ -1,0 +1,28 @@
+.game__rules {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  text-align: left;
+  padding: 0vmin 3vmax 4vmin;
+  //   background: #eee;
+  //   border-radius: 8px;
+  width: 80%;
+  margin: 0 auto;
+  line-height: 160%;
+  &__list {
+    list-style: bullet;
+    padding: 0 1.3vmax;
+    margin: 0;
+    li {
+      font-weight: bold;
+    }
+  }
+}
+.play__button {
+  width: 15vw;
+  padding: 2vmin 1vmax !important;
+  font-size: 1.4rem;
+  font-weight: bolder;
+  opacity: 1;
+  //   font
+}

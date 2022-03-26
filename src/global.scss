@@ -1,0 +1,76 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Smokum&display=swap");
+html {
+  font-size: 8px;
+  @media screen and (min-width: 768px) {
+    font-size: 11px;
+  }
+  @media screen and (min-width: 1000px) {
+    font-size: 13px;
+  }
+  @media screen and (min-width: 1200px) {
+    font-size: 16px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+html,
+#root {
+  height: 100%;
+  font-family: "Lato", sans-serif;
+  width: 100%;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body {
+  background: rgb(22, 21, 21);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+a:visited {
+  text-decoration: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+button,
+button:active,
+button:focus {
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5vmin;
+  flex-direction: column;
+  &__heading {
+    font-size: 4rem;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: "Smokum", cursive;
+    letter-spacing: 8px;
+    color: rgba(255, 255, 255, 0.8);
+  }
+}

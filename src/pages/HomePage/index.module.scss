@@ -1,0 +1,36 @@
+.play__button {
+  width: 20vw;
+  padding: 3vmin 2vmax !important;
+  font-size: 1.4rem;
+  transform: translateX(-1000px);
+  font-weight: bolder;
+  opacity: 0;
+  animation: fadeInLeft 1.6s ease forwards;
+  //   font
+}
+.icon {
+  width: 25vmin;
+  height: 25vmin;
+  path {
+    //   stroke: rgba(255, 255, 255, 0.8);
+    fill: rgba(255, 255, 255, 0.8);
+  }
+  opacity: 0;
+  animation: fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInLeft {
+  70% {
+    transform: translateX(200px);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0);
+  }
+}
