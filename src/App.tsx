@@ -15,7 +15,7 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     navigate("/");
-  }, [navigate]);
+  }, []);
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
