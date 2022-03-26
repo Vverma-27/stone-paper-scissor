@@ -1,4 +1,8 @@
-import gameplayReducer, { incrementAi, incrementPlayer } from "./gameplaySlice";
+import gameplayReducer, {
+  addInMoveHistory,
+  incrementRound,
+  reset,
+} from "./gameplaySlice";
 import { IGameplayState, initialState } from "./gameplay.interface";
 
 describe("counter reducer", () => {
@@ -7,22 +11,21 @@ describe("counter reducer", () => {
       initialState
     );
   });
-
-  it("should handle ai increment", () => {
+  it("should handle move", () => {
     const actual = gameplayReducer(
       initialState,
-      incrementAi({ move: 0, result: "win" })
-    );
-    expect(actual.aiScore).toEqual(1);
-    expect(actual.moveList).toEqual([0]);
-  });
-
-  it("should handle player increment", () => {
-    const actual = gameplayReducer(
-      initialState,
-      incrementPlayer({ move: 0, result: "win" })
+      addInMoveHistory({ move: 0, result: "win" })
     );
     expect(actual.playerScore).toEqual(1);
+    expect(actual.aiScore).toEqual(0);
     expect(actual.moveList).toEqual([0]);
+  });
+  it("should increment round", () => {
+    const actual = gameplayReducer(initialState, incrementRound());
+    expect(actual.rounds).toEqual(1);
+  });
+  it("should reset", () => {
+    const actual = gameplayReducer(initialState, reset());
+    expect(actual).toEqual(initialState);
   });
 });

@@ -7,7 +7,7 @@ import { IMove } from "../../redux/gameplay/gameplay.interface";
 
 const SelectOption = ({ onClick }: { onClick: (e: IMove) => void }) => {
   return (
-    <section className="container">
+    <section className="container" style={{ height: "auto" }}>
       <h1 className="container__heading">your selection</h1>
       <section
         style={{
@@ -16,6 +16,7 @@ const SelectOption = ({ onClick }: { onClick: (e: IMove) => void }) => {
           justifyContent: "space-evenly",
           width: "100%",
           flexWrap: "wrap",
+          gap: "5vmin",
         }}
       >
         <OptionCard

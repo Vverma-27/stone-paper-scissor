@@ -17,7 +17,7 @@ export interface IGameplayState {
   rounds: number;
   moveList: { move: IMove; result: "win" | "loss" | "draw" }[];
   gameOver: boolean;
-  onMove: "p" | "ai";
+  // onMove: "p" | "ai";
 }
 
 export const initialState: IGameplayState = {
@@ -26,5 +26,5 @@ export const initialState: IGameplayState = {
   aiScore: 0,
   gameOver: false,
   moveList: [],
-  onMove: "p",
+  // onMove: "p",
 };

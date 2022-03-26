@@ -5,20 +5,22 @@ import LoadingScreen from "./LoadingScreen";
 import { IMove } from "../../redux/gameplay/gameplay.interface";
 import Result from "./Result";
 import getBestMove from "../../lib/getBestMove";
+import { useAppSelector } from "../../redux/hooks";
 
 const FaceOff = ({ selection }: { selection: IMove }) => {
   const [showLoading, setShowLoading] = useState(true);
   const [aiSelection, setAISelection] = useState<IMove>(0);
+  const { moveList } = useAppSelector((state) => state.gameplay);
   useEffect(() => {
     const id = setTimeout(() => {
       setShowLoading(false);
-    }, 6000);
+    }, 3000);
     return () => {
       clearTimeout(id);
     };
   }, []);
   useEffect(() => {
-    setAISelection(getBestMove());
+    setAISelection(getBestMove(moveList));
   }, [selection]);
   return showLoading ? (
     <LoadingScreen />

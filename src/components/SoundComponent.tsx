@@ -18,13 +18,13 @@ const SoundComponent = () => {
     >
       <Button onClick={() => setPlaying(!playing)}>
         <img src={playing ? soundIcon : soundOff} alt="sound" />
-        <Sound
-          url={backgroundSound}
-          playStatus={playing ? "PLAYING" : "PAUSED"}
-          loop={true}
-          volume={4}
-        />
       </Button>
+      <Sound
+        url={backgroundSound}
+        playStatus={playing ? "PLAYING" : "PAUSED"}
+        loop={true}
+        volume={4}
+      />
     </section>
   );
 };

@@ -7,6 +7,9 @@
   justify-content: center;
   //   transition: all 0.1s ease;
   box-shadow: -2px 2px 8px -2px #fff;
+  @media screen and (max-width: 550px) {
+    width: auto !important;
+  }
   &:active {
     transform: translate(-1px, 1px) !important;
     box-shadow: none;

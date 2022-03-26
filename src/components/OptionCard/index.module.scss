@@ -10,6 +10,10 @@
   gap: 3vmin;
   cursor: pointer;
   transition: all 0.1s ease;
+  min-width: 160px;
+  // @media screen and (max-width: 550px) {
+  //   margin-bottom: 4vmin;
+  // }
   box-shadow: -2px 2px 8px -2px rgba(255, 255, 255, 0.5);
   &__image {
     height: 10vmin;

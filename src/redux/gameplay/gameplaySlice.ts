@@ -6,7 +6,7 @@ export const gameplaySlice = createSlice({
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
-    incrementPlayer: (
+    addInMoveHistory: (
       state,
       payload: PayloadAction<{ move: IMove; result: "win" | "loss" | "draw" }>
     ) => {
@@ -14,29 +14,24 @@ export const gameplaySlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.playerScore += 1;
+      state.aiScore += Number(payload.payload.result === "loss");
+      state.playerScore += Number(payload.payload.result === "win");
       state.moveList.push(payload.payload);
-      state.rounds++;
       state.gameOver =
         state.rounds === 4 || state.playerScore === 3 || state.aiScore === 3;
+      // state.rounds++;
     },
-    incrementAi: (
-      state,
-      payload: PayloadAction<{ move: IMove; result: "win" | "loss" | "draw" }>
-    ) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers. It
-      // doesn't actually mutate the state because it uses the Immer library,
-      // which detects changes to a "draft state" and produces a brand new
-      // immutable state based off those changes
-      state.aiScore += 1;
-      state.moveList.push(payload.payload);
+    incrementRound: (state) => {
       state.rounds++;
-      state.gameOver =
-        state.rounds === 4 || state.playerScore === 3 || state.aiScore === 3;
+    },
+    reset: (state) => {
+      // We'll use the `slice` function to namespace our actions
+      return initialState;
     },
   },
 });
 
-export const { incrementAi, incrementPlayer } = gameplaySlice.actions;
+export const { addInMoveHistory, incrementRound, reset } =
+  gameplaySlice.actions;
 
 export default gameplaySlice.reducer;

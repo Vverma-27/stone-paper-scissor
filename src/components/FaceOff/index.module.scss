@@ -11,16 +11,29 @@
   }
 }
 
-.heading {
-  transform: translateY(-120vh);
-  &:first-of-type {
-    animation: moveIn 2s linear;
-  }
-  &:nth-of-type(2) {
-    animation: moveIn 2s 2s linear;
-  }
-  &:nth-of-type(3) {
-    animation: moveIn 2s 4s linear;
+.button__text {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  padding: 2vmin 1vmax;
+  width: auto;
+}
+
+.headings {
+  width: 20vmax;
+
+  .heading {
+    transform: translateY(-120vh);
+    &:first-of-type {
+      animation: moveIn 1s linear;
+    }
+    &:nth-of-type(2) {
+      animation: moveIn 1s 1s linear;
+    }
+    &:nth-of-type(3) {
+      animation: moveIn 1s 2s linear;
+    }
   }
 }
 

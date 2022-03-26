@@ -6,10 +6,13 @@ const FaceOff = () => {
   return (
     <section
       className="container"
-      style={{ flexDirection: "row", justifyContent: "space-around" }}
+      style={{
+        flexDirection: "row",
+        justifyContent: "space-around",
+      }}
     >
       <img src={rockIcon} alt="hand icon" className={styles.rock__icon} />
-      <section style={{ zIndex: -1 }}>
+      <section className={styles.headings}>
         <h1 className={`container__heading ${styles.heading}`}>Rock</h1>
         <h1 className={`container__heading ${styles.heading}`}>Paper</h1>
         <h1 className={`container__heading ${styles.heading}`}>scissors</h1>
