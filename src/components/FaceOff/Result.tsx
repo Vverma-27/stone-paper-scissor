@@ -23,7 +23,9 @@ const Result = (props: IProps) => {
   const { userSelection, aiSelection } = props;
   const result = getResult(userSelection, aiSelection);
   const dispatch = useAppDispatch();
-  const { gameOver } = useAppSelector((state) => state.gameplay);
+  const { gameOver, playerScore, aiScore } = useAppSelector(
+    (state) => state.gameplay
+  );
   // const navigate
   useEffect(() => {
     dispatch(addInMoveHistory({ result, move: userSelection }));
@@ -49,7 +51,11 @@ const Result = (props: IProps) => {
           flexDirection: "column",
         }}
       >
-        <h1 className={`container__heading`}>{result}</h1>
+        <h1 className={`container__heading`}>
+          {!gameOver
+            ? result
+            : `${playerScore > aiScore ? "You" : "AI"} Won The Game`}
+        </h1>
         {!gameOver ? (
           <Button
             onClick={() => {

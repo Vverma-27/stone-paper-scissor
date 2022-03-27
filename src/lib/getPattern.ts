@@ -36,10 +36,11 @@ const getPattern = (
     }
   }
   //if changes have occured more than 50% of the times, then it is a pattern
-  if ((changesAfterWins / wins) * 100 >= 0.5) pattern.change_after_win = true;
-  if ((changesAfterLosses / losses) * 100 >= 0.5)
+  if ((changesAfterWins / wins) * 100 >= 0.5 || wins === 0)
+    pattern.change_after_win = true;
+  if ((changesAfterLosses / losses) * 100 >= 0.5 || losses === 0)
     pattern.change_after_loss = true;
-  if ((changesAfterDraws / draws) * 100 >= 0.5)
+  if ((changesAfterDraws / draws) * 100 >= 0.5 || draws === 0)
     pattern.change_after_draw = true;
   //patter is random if all are true
   pattern.random =
