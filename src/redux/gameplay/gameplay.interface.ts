@@ -1,5 +1,6 @@
 export enum GameModes {
-  "NORMAL",
+  "AI",
+  "HUMAN_VS_HUMAN",
 }
 
 export enum IMove {
@@ -8,12 +9,23 @@ export enum IMove {
   "SCISSORS",
 }
 
-export enum IResult {}
+export interface IGameInfo {
+  host?: string;
+  opponent?: string;
+  gameId: string;
+  hostScore?: number;
+  opponentScore?: number;
+  rounds?: number;
+  gameOver?: boolean;
+  currentHostMove?: IMove;
+  currentOpponentMove?: IMove;
+}
 
 export interface IGameplayState {
   gameMode?: GameModes;
-  aiScore: number;
-  playerScore: number;
+  gameInfo?: IGameInfo;
+  opponentScore: number;
+  hostScore: number;
   rounds: number;
   moveList: { move: IMove; result: "win" | "loss" | "draw" }[];
   gameOver: boolean;
@@ -22,8 +34,8 @@ export interface IGameplayState {
 
 export const initialState: IGameplayState = {
   rounds: 0,
-  playerScore: 0,
-  aiScore: 0,
+  hostScore: 0,
+  opponentScore: 0,
   gameOver: false,
   moveList: [],
   // onMove: "p",

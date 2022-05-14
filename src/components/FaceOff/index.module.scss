@@ -20,6 +20,10 @@
   width: auto;
 }
 
+.waiting {
+  animation: blink 1s ease infinite alternate;
+}
+
 .headings {
   width: 20vmax;
 
@@ -61,6 +65,15 @@
   }
   100% {
     transform: rotate(45deg);
+  }
+}
+
+@keyframes blink {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 

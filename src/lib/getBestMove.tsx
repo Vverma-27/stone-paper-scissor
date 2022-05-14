@@ -8,10 +8,10 @@ const getBestMove = (
   //for first move return random move
   if (moveList.length <= 1) return random <= 0.33 ? 1 : random <= 0.66 ? 2 : 3;
   const lastResult = moveList.slice(-1)[0].result;
-  const lastMove = moveList.slice(-1)[0].move;
   const userPattern: IPattern = getPattern(moveList);
   // if user does random moves
   if (userPattern.random) return random <= 0.33 ? 1 : random <= 0.66 ? 2 : 3;
+  const lastMove = moveList.slice(-1)[0].move;
   if (lastResult === "loss") {
     // if last move was loss and user changes after loss then return best option of other two otherwise return winner move
     switch (lastMove) {

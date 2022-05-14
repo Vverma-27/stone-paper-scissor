@@ -1,0 +1,41 @@
+.modal {
+  height: 100vh;
+  width: 100vw;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  &__information {
+    // height: 15vmin;
+    width: 25vmax;
+    position: absolute;
+    top: 4vmin;
+    left: 4vmin;
+    padding: 1.5vmin 1vmax;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 5px;
+  }
+  &__title {
+    text-align: left;
+    font-size: 1.3rem;
+    // color: #eee;
+    letter-spacing: 0.4vmin;
+    font-family: "Smokum", cursive;
+  }
+  &__game {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.4vmin;
+    &__url {
+      color: #eee;
+      font-size: 1rem;
+    }
+    &__copy {
+      width: auto;
+      font-size: 0.9rem;
+    }
+  }
+}

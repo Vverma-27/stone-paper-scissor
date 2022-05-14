@@ -5,8 +5,15 @@ import Typed from "react-typed";
 import homeicon from "../../assets/images/home-icon.svg";
 import IconComponent from "./IconComponent";
 import Button from "../../components/Button";
+import UsernameModal from "../../components/UsernameModel";
 
-const HomePage = () => {
+const HomePage = ({
+  showUsernameModal,
+  onClick,
+}: {
+  showUsernameModal: boolean;
+  onClick: (username: string) => boolean;
+}) => {
   const navigate = useNavigate();
   return (
     <section className="container">
@@ -34,6 +41,9 @@ const HomePage = () => {
         className={styles.play__button}
         onClick={() => navigate("/getting-started")}
       ></button> */}
+      {showUsernameModal ? (
+        <UsernameModal onClick={(username: string) => onClick(username)} />
+      ) : null}
     </section>
   );
 };

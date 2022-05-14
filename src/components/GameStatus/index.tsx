@@ -1,14 +1,21 @@
 import React from "react";
+import { GameModes } from "../../redux/gameplay/gameplay.interface";
 import { useAppSelector } from "../../redux/hooks";
 import styles from "./index.module.scss";
 
 const GameStatus = () => {
   const {
     rounds: round,
-    playerScore,
-    aiScore,
+    hostScore,
+    opponentScore,
     moveList,
+    gameInfo,
+    gameMode,
   } = useAppSelector((state) => state.gameplay);
+  const { username } = useAppSelector((state) => state.user);
+  const hostIsPlayer = gameInfo?.host === username;
+  const isAi = gameMode === GameModes.AI;
+  const opponentUsername = !hostIsPlayer ? gameInfo?.host : gameInfo?.opponent;
   return (
     <section className={styles.container}>
       <p className={styles.round__info}>
@@ -16,11 +23,13 @@ const GameStatus = () => {
       </p>
       <p className={styles.player__scores}>
         <p className={styles.round__info}>
-          Player: <br /> {playerScore}
+          {isAi ? "Player" : username}: <br />{" "}
+          {hostIsPlayer ? hostScore : opponentScore}
         </p>
         <div className={styles.score__divider}></div>
         <p className={styles.round__info}>
-          AI: <br /> {aiScore}
+          {isAi ? "AI" : opponentUsername}: <br />
+          {!hostIsPlayer ? hostScore : opponentScore}
         </p>
       </p>
       <section
@@ -31,34 +40,19 @@ const GameStatus = () => {
           gap: "1vh",
         }}
       >
-        <section className={styles.rounds__dots}>
-          {[0, 1, 2, 3, 4].map((e) => {
-            return (
-              <>
-                {" "}
+        {Array.from(Array(2)).map((el, i) => {
+          return (
+            <section className={styles.rounds__dots}>
+              {Array.from(Array(5)).map((el, e) => (
                 <div
                   className={`${styles.result__dot} ${
-                    styles[`result__dot-${moveList?.[e]?.result}`]
+                    styles[`result__dot-${moveList?.[i * 5 + e]?.result}`]
                   }`}
                 ></div>
-              </>
-            );
-          })}
-        </section>
-        <section className={styles.rounds__dots}>
-          {[5, 6, 7, 8, 9].map((e) => {
-            return (
-              <>
-                {" "}
-                <div
-                  className={`${styles.result__dot} ${
-                    styles[`result__dot-${moveList?.[e]?.result}`]
-                  }`}
-                ></div>
-              </>
-            );
-          })}
-        </section>
+              ))}
+            </section>
+          );
+        })}
       </section>
     </section>
   );

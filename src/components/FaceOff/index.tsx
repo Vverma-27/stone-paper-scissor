@@ -2,30 +2,52 @@ import React, { useEffect, useState } from "react";
 import styles from "./index.module.scss";
 import rockIcon from "../../assets/images/rock-icon-big.png";
 import LoadingScreen from "./LoadingScreen";
-import { IMove } from "../../redux/gameplay/gameplay.interface";
+import { GameModes, IMove } from "../../redux/gameplay/gameplay.interface";
 import Result from "./Result";
 import getBestMove from "../../lib/getBestMove";
 import { useAppSelector } from "../../redux/hooks";
+import WaitingScreen from "./WaitingScreen";
 
-const FaceOff = ({ selection }: { selection: IMove }) => {
+const FaceOff = ({
+  selection,
+  opponentSelection,
+  setOpponentSelection,
+}: {
+  selection: IMove;
+  opponentSelection: IMove;
+  setOpponentSelection: (h: IMove) => void;
+}) => {
   const [showLoading, setShowLoading] = useState(true);
-  const [aiSelection, setAISelection] = useState<IMove>(0);
-  const { moveList } = useAppSelector((state) => state.gameplay);
+  // console.log("opponset ", opponentSelection);
+  // const [opponentSelection, setOpponentSelection] = useState<IMove>(0);
+  const { moveList, gameMode } = useAppSelector((state) => state.gameplay);
   useEffect(() => {
-    const id = setTimeout(() => {
+    let id: NodeJS.Timeout;
+    if (gameMode === GameModes.AI) {
+      id = setTimeout(() => {
+        setShowLoading(false);
+      }, 3000);
+    } else {
       setShowLoading(false);
-    }, 3000);
+    }
     return () => {
       clearTimeout(id);
     };
   }, []);
   useEffect(() => {
-    setAISelection(getBestMove(moveList));
+    if (gameMode === GameModes.AI) setOpponentSelection(getBestMove(moveList));
+    // else setOpponentSelection(0);
   }, [selection]);
   return showLoading ? (
     <LoadingScreen />
+  ) : opponentSelection ? (
+    <Result
+      opponentSelection={opponentSelection}
+      userSelection={selection}
+      // setOpponentSelection={setOpponentSelection}
+    />
   ) : (
-    <Result aiSelection={aiSelection} userSelection={selection} />
+    <WaitingScreen />
   );
 };
 

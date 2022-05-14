@@ -16,8 +16,8 @@ describe("counter reducer", () => {
       initialState,
       addInMoveHistory({ move: 0, result: "win" })
     );
-    expect(actual.playerScore).toEqual(1);
-    expect(actual.aiScore).toEqual(0);
+    expect(actual.hostScore).toEqual(1);
+    expect(actual.opponentScore).toEqual(0);
     expect(actual.moveList).toEqual([0]);
   });
   it("should increment round", () => {

@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IMove, initialState } from "./gameplay.interface";
+import {
+  GameModes,
+  IGameInfo,
+  IMove,
+  initialState,
+} from "./gameplay.interface";
 
 export const gameplaySlice = createSlice({
-  name: "counter",
+  name: "gamePlay",
   initialState,
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
@@ -14,15 +19,29 @@ export const gameplaySlice = createSlice({
       // doesn't actually mutate the state because it uses the Immer library,
       // which detects changes to a "draft state" and produces a brand new
       // immutable state based off those changes
-      state.aiScore += Number(payload.payload.result === "loss");
-      state.playerScore += Number(payload.payload.result === "win");
+      state.opponentScore += Number(payload.payload.result === "loss");
+      state.hostScore += Number(payload.payload.result === "win");
       state.moveList.push(payload.payload);
       state.gameOver =
-        state.rounds === 9 || state.playerScore === 6 || state.aiScore === 6;
+        state.rounds === 10 ||
+        state.hostScore === 6 ||
+        state.opponentScore === 6;
       // state.rounds++;
+    },
+    setGameMode: (state, payload: PayloadAction<GameModes>) => {
+      state.gameMode = payload.payload;
     },
     incrementRound: (state) => {
       state.rounds++;
+    },
+    setGameInfo: (state, payload: PayloadAction<IGameInfo>) => {
+      state.gameInfo = payload.payload;
+      state.gameMode = GameModes.HUMAN_VS_HUMAN;
+      state.rounds = payload.payload.rounds || state.rounds;
+      state.hostScore = payload.payload.hostScore || state.hostScore;
+      state.opponentScore =
+        payload.payload.opponentScore || state.opponentScore;
+      state.gameOver = payload.payload.gameOver || state.gameOver;
     },
     reset: (state) => {
       // We'll use the `slice` function to namespace our actions
@@ -31,7 +50,12 @@ export const gameplaySlice = createSlice({
   },
 });
 
-export const { addInMoveHistory, incrementRound, reset } =
-  gameplaySlice.actions;
+export const {
+  addInMoveHistory,
+  incrementRound,
+  reset,
+  setGameMode,
+  setGameInfo,
+} = gameplaySlice.actions;
 
 export default gameplaySlice.reducer;
