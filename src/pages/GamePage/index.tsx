@@ -11,6 +11,7 @@ import SocketService from "../../services/SocketService";
 const Game = () => {
   const [selectedOption, setSelectedOption] = useState<IMove>(0);
   const [opponentSelection, setOpponentSelection] = useState<IMove>(0);
+  // const [result, setResult] = useState<string>("");
   const {
     rounds: round,
     gameMode,
@@ -27,6 +28,7 @@ const Game = () => {
   useEffect(() => {
     setSelectedOption(0);
     setOpponentSelection(0);
+    // setResult("");
   }, [round]);
   useEffect(() => {
     if (gameMode === GameModes.HUMAN_VS_HUMAN) {
@@ -40,6 +42,7 @@ const Game = () => {
           setOpponentSelection(
             !isHost ? payload.hostMove : payload.opponentMove
           );
+          // setResult(result);
         }
       );
       SocketService.subscribeTo("next-round", () => {
@@ -65,6 +68,7 @@ const Game = () => {
           selection={selectedOption}
           opponentSelection={opponentSelection}
           setOpponentSelection={setOpponentSelection}
+          // result={result}
         />
       )}
     </section>

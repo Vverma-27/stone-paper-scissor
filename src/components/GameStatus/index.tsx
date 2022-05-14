@@ -23,13 +23,12 @@ const GameStatus = () => {
       </p>
       <p className={styles.player__scores}>
         <p className={styles.round__info}>
-          {isAi ? "Player" : username}: <br />{" "}
-          {hostIsPlayer ? hostScore : opponentScore}
+          {isAi ? "Player" : username}: <br /> {hostScore}
         </p>
         <div className={styles.score__divider}></div>
         <p className={styles.round__info}>
           {isAi ? "AI" : opponentUsername}: <br />
-          {!hostIsPlayer ? hostScore : opponentScore}
+          {opponentScore}
         </p>
       </p>
       <section

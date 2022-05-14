@@ -9,11 +9,11 @@ import styles from "./index.module.scss";
 
 const CreateGameModal = ({ onClose }: { onClose: () => void }) => {
   const { gameInfo } = useAppSelector((state) => state.gameplay);
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  useEffect(() => {
-    subscribeToGameStart(dispatch, navigate);
-  }, []);
+  // const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
+  // useEffect(() => {
+  //   subscribeToGameStart(dispatch, navigate);
+  // }, []);
   const gameUrl =
     window.location.origin +
     "/join-game?game-id=" +

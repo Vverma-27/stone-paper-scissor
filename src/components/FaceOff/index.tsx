@@ -12,10 +12,12 @@ const FaceOff = ({
   selection,
   opponentSelection,
   setOpponentSelection,
-}: {
+}: // result
+{
   selection: IMove;
   opponentSelection: IMove;
   setOpponentSelection: (h: IMove) => void;
+  // result:any;
 }) => {
   const [showLoading, setShowLoading] = useState(true);
   // console.log("opponset ", opponentSelection);
@@ -44,6 +46,7 @@ const FaceOff = ({
     <Result
       opponentSelection={opponentSelection}
       userSelection={selection}
+      // result={result}
       // setOpponentSelection={setOpponentSelection}
     />
   ) : (
