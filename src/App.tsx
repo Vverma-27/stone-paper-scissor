@@ -20,6 +20,7 @@ function App() {
   const dispatch = useAppDispatch();
   // const socketService = SocketService;
   const [showUsernameModal, setShowUsernameModal] = useState(false);
+  console.log("SERVER ", process.env.SERVER_URL, process.env);
   useEffect(() => {
     // navigate("/");
     // if(docu)
