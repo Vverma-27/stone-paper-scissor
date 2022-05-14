@@ -64,10 +64,9 @@ const Result = (props: IProps) => {
         {!gameOver ? (
           <Button
             onClick={() => {
-              // dispatch(incrementRound());
               if (gameMode === GameModes.HUMAN_VS_HUMAN) {
                 SocketService.sendEvent("next-round", gameInfo?.gameId, null);
-              }
+              } else dispatch(incrementRound());
             }}
             className={styles.button__text}
           >

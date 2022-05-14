@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FaceOff from "../../components/FaceOff";
 import GameStatus from "../../components/GameStatus";
@@ -21,9 +21,14 @@ const Game = () => {
   const { username } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const timerId = useRef<NodeJS.Timeout>(null);
   const isHost = gameInfo?.host === username;
   useEffect(() => {
-    if (!gameMode) navigate("/");
+    if (!gameMode && gameMode !== 0) navigate("/");
+    // eslint-disable-next-line
+    return () => {
+      clearTimeout(timerId.current);
+    };
   }, []);
   useEffect(() => {
     setSelectedOption(0);
@@ -47,7 +52,8 @@ const Game = () => {
       );
       SocketService.subscribeTo("next-round", () => {
         if (!gameOver) {
-          dispatch(incrementRound());
+          clearTimeout(timerId.current);
+          timerId.current = setTimeout(() => dispatch(incrementRound()), 1000);
         }
       });
     }
