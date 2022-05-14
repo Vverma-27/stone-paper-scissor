@@ -23,7 +23,7 @@ export const gameplaySlice = createSlice({
       state.hostScore += Number(payload.payload.result === "win");
       state.moveList.push(payload.payload);
       state.gameOver =
-        state.rounds === 10 ||
+        state.rounds === 9 ||
         state.hostScore === 6 ||
         state.opponentScore === 6;
       // state.rounds++;
