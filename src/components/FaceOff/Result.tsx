@@ -58,7 +58,15 @@ const Result = (props: IProps) => {
         <h1 className={`container__heading`}>
           {!gameOver
             ? result
-            : `${hostScore > opponentScore ? "You" : "Opponent"} Won The Game`}
+            : `${
+                isAi
+                  ? hostScore > opponentScore
+                    ? "You"
+                    : "Opponent"
+                  : hostScore > opponentScore
+                  ? gameInfo?.host
+                  : gameInfo?.opponent
+              } Won The Game`}
         </h1>
         {!gameOver ? (
           <Button
