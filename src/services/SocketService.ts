@@ -4,7 +4,11 @@ import { io } from "socket.io-client";
 class SocketService {
   private socket: any;
   constructor() {
-    this.socket = io(process.env.SERVER_URL || "http://localhost:5000");
+    this.socket = io(
+      process.env.NODE_ENV === "production"
+        ? "https://spr-backend.herokuapp.com/"
+        : "http://localhost:5000"
+    );
   }
   public subscribeTo(eventName: string, callback: any) {
     this.socket.on(eventName, callback);
