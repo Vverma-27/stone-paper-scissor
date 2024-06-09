@@ -6,7 +6,7 @@ class SocketService {
   constructor() {
     this.socket = io(
       process.env.NODE_ENV === "production"
-        ? "https://stone-paper-scissor-backend.vercel.app/"
+        ? "https://naval-marchelle-vihaan-verma-bb9103a3.koyeb.app/"
         : "http://localhost:5000"
     );
   }
