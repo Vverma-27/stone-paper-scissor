@@ -7,8 +7,7 @@ class SocketService {
     this.socket = io(
       process.env.NODE_ENV === "production"
         ? "https://stone-paper-scissor-backend.vercel.app/"
-        : "http://localhost:5000",{
-    transports: ["websocket", "polling"],}
+        : "http://localhost:5000"
     );
   }
   public subscribeTo(eventName: string, callback: any) {
