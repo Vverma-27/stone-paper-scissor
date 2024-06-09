@@ -6,8 +6,9 @@ class SocketService {
   constructor() {
     this.socket = io(
       process.env.NODE_ENV === "production"
-        ? "https://spr-backend.herokuapp.com/"
-        : "http://localhost:5000"
+        ? "https://stone-paper-scissor-backend.vercel.app/"
+        : "http://localhost:5000",{
+    transports: ["websocket", "polling"],}
     );
   }
   public subscribeTo(eventName: string, callback: any) {
